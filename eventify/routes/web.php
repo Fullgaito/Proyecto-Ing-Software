@@ -28,12 +28,7 @@ Route::view('/dashboard/events', 'dashboard.events')->name('dashboard.events')->
 Route::view('/dashboard/event/edit', 'dashboard.event-edit')->name('dashboard.event-edit')->middleware('auth');
 Route::view('/dashboard/tickets', 'dashboard.tickets')->name('dashboard.tickets')->middleware('auth');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
 
 //Middleware para distinción de roles
 
@@ -46,7 +41,7 @@ Route::prefix('dashboard')->middleware(['auth','role:admin|user'])->group(functi
 
     //Admins
     Route::prefix('admin')->middleware('role:admin')->group(function(){
-        //Rutas CRUD usuarios
+        //Rutas CRUD usuarios (/dashboard/admin/users)
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
         Route::post('/users', [UserController::class, 'store'])->name('users.store');
