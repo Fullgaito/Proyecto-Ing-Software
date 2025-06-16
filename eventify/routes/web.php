@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\TicketController;
 
 
 /*
@@ -19,14 +21,10 @@ use App\Http\Controllers\UserController;
 
 Auth::routes();
 
+Route::get('/', [EventController::class, 'showHome'])->name('home');
+Route::get('explore', [EventController::class, 'showExplore'])->name('explore');
+Route::get('event/{event}', [EventController::class, 'show'])->name('event.show');
 
-Route::view('/', 'home')->name('home');
-Route::view('/explore', 'explore')->name('explore');
-
-Route::view('/dashboard', 'dashboard.home')->name('dashboard')->middleware('auth');
-Route::view('/dashboard/events', 'dashboard.events')->name('dashboard.events')->middleware('auth');
-Route::view('/dashboard/event/edit', 'dashboard.event-edit')->name('dashboard.event-edit')->middleware('auth');
-Route::view('/dashboard/tickets', 'dashboard.tickets')->name('dashboard.tickets')->middleware('auth');
 
 
 
@@ -36,8 +34,21 @@ Route::prefix('dashboard')->middleware(['auth','role:admin|user'])->group(functi
 
 
     //Usuarios y admins
+    Route::view('/', 'dashboard.home')->name('dashboard');
 
+     Route::prefix('events')->group(function () {
+        Route::get('/', [EventController::class, 'showMyEvents'])->name('dashboard.events.index');
+        Route::get('create', [EventController::class, 'create'])->name('dashboard.event.create');
+        Route::post('store', [EventController::class, 'store'])->name('dashboard.event.store');
+        Route::get('edit/{event}', [EventController::class, 'edit'])->name('dashboard.event.edit');
+        Route::put('{event}', [EventController::class, 'update'])->name('dashboard.event.update');
+        Route::delete('{event}', [EventController::class, 'destroy'])->name('dashboard.event.destroy');
+    });
 
+    Route::prefix('tickets')->group(function () {
+        Route::get('/', [TicketController::class, 'showMyTickets'])->name('dashboard.tickets.index');
+        Route::post('store', [TicketController::class, 'store'])->name('ticket.store');
+    });
 
     //Admins
     Route::prefix('admin')->middleware('role:admin')->group(function(){
