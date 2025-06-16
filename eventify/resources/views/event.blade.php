@@ -4,6 +4,15 @@
 
 @section('content')
 
+<<<<<<< HEAD
+=======
+<!-- Añadir CSS de Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<!-- Añadir JS de Leaflet -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
 <section class="container mb-5">
 
     <div class="row mt-4">
@@ -12,7 +21,11 @@
             @if(auth()->check() && $event->user_id == auth()->id())
                 <div class="alert alert-secondary alert-dismissible fade show" role="alert">
                     <i class="bi bi-calendar-check-fill me-1"></i>
+<<<<<<< HEAD
                     <strong>Este evento es tuyo, puedes editarlo en el <a href="{{route('dashboard.events.index')}}" class="link-dark">dashboard.</a></strong>
+=======
+                    <strong>Este evento es tuyo, puedes editarlo en el <a href="{{route('events.index')}}" class="link-dark">dashboard.</a></strong>
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
@@ -43,12 +56,20 @@
                     <div class="row">
                         <div class="col badge-container">
                             <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill mb-2 ">
+<<<<<<< HEAD
                                 {{ $event->categories }}
+=======
+                                {{ $event->category ? $event->category->name : 'Sin categoría'}}
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
                             </span>
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <img id="event-img" class="card-img img-fluid" src="{{ asset('storage/' . $event->image) }}" alt="Imagen del evento">
+=======
+                    <img id="event-img" class="card-img img-fluid" src="{{ asset('storage/' . $event->img_url) }}" alt="Imagen del evento">
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
 
                     <div class="d-flex align-items-center mt-3">
                         <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2">
@@ -61,16 +82,31 @@
                         <div class="d-flex align-items-center flex-wrap">
                             <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2 me-1">
                                 <i class="bi bi-geo-alt-fill mt-1"></i>
+<<<<<<< HEAD
                                 {{-- <span>{{ $event->location_id}}, {{ $event->location->region}}, {{ $event->location->city}}</span> --}}
+=======
+                                <span>{{ $event->location->country}}, {{ $event->location->region}}, {{ $event->location->city}}</span>
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
                             </span>
 
                             <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2">
                                 <i class="bi bi-map-fill me-1"></i>
+<<<<<<< HEAD
                                 {{-- <span>{{ $event->location->address}}</span> --}}
+=======
+                                <span>{{ $event->location->address}}</span>
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
                             </span>
                         </div>
 
                     </div>
+<<<<<<< HEAD
+=======
+
+                    <!-- Contenedor para el mapa -->
+                    <div id="map" style="height: 400px"></div>
+
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
                     <p class="card-text ">
                         {{ $event->description }}
                     </p>
@@ -189,14 +225,44 @@
 
                                 <input type="hidden" name="event_id" value="{{$event->id}}" >
                                 <button type="submit" class="btn btn-primary text-white fw-semibold w-100">Comprar</button>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
                             @endif
                         @endguest
                     </form>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+=======
+
+        <a href="{{ route('events.downloadReport', $event) }}" class="btn btn-primary">Descargar Información del Evento</a>
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
     </div>
 
 
 </section>
+<<<<<<< HEAD
+=======
+
+<script>
+    @if($event->location && $event->location->latitude && $event->location->longitude)
+        var map = L.map('map').setView([{{ $event->location->latitude }}, {{ $event->location->longitude }}], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        L.marker([{{ $event->location->latitude }}, {{ $event->location->longitude }}]).addTo(map)
+            .bindPopup('{{ $event->name }}')
+            .openPopup();
+    @else
+        console.error('No se puede mostrar el mapa: faltan datos de ubicación.');
+    @endif
+</script>
+
+
+>>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
 @endsection
