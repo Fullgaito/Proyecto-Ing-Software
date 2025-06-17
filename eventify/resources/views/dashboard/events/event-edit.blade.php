@@ -12,68 +12,28 @@
                 Editar Evento
             </h1>
             <hr class="mt-0">
-<<<<<<< HEAD
 
 
         </div>
         <div>
-            <form action="{{ route('events.update',$event) }}" method="POST">
-                @csrf @method('PATCH')
-                <label for="statu">Estado del evento</label>
-                <select name="statu_id" id="statu" >
-                    @foreach ($status as $statu)
-                        <option value="{{$statu['id']}}">{{$statu['name']}}</option>
-                    @endforeach
-                </select></br>
-                <label for="location">Localizacion</label>
-                <select name="location_id" id="location" >
-                    @foreach ($locations as $location)
-                        <option value="{{$location['id']}}">{{$location['address']}}, | {{$location['city']}}</option>
-                    @endforeach
-                </select></br>
-                <label for="category">Categoria</label>
-                <select name="category_id" id="category" >
-                    @foreach ($categories as $category)
-                        <option value="{{$category['id']}}">{{$category['name']}}</option>
-                    @endforeach
-                </select></br>
-                <label for="name">Nombre del evento</label>
-                <input type="text" id="name" name="name" value="{{old('name',$event->name)}}" required ></br>
-                <label for="descri">Descripcion</label>
-                <input type="textarea" id="descr" name="descri" value="{{old('descri',$event->description)}}"></br>
-                <label for="url">img_url</label>
-                <input type="url" id="url" name="url" value="{{old('url',$event->img_url)}}"></br>
-                <label for="capacity">Capacidad</label>
-                <input type="number" id="capacity" name="capacity" value="{{old('capacity',$event->capacity)}}"></br>
-                <label for="price">Precio</label>
-                <input type="number" id="price" name="price" value="{{old('price',$event->price)}}"></br>
-                <label for="inicio">Fecha de inicio</label>
-                <input type="date" id="inicio" name="inicio" value="{{old('inicio',$event->start_date)}}"></br>
-                <label for="fin">Fecha de finalizacion</label>
-                <input type="date" id="fin" name="fin" value="{{$event['end_date']}}"></br>
-                <input type="submit" value="Enviar">
-            </form>
-            <a href="{{route('dashboard.events')}}">Regresar</a>
-        </div>
-    </div>
-
-
-</section>
-
-=======
-        </div>
-        <div>
-            <form action="{{ route('event.update',$event) }}" method="POST">
+            <form action="{{ route('dashboard.event.update',$event) }}" method="POST">
+                
+                
+                
+        
+        
+                
             </form>
             <div class="row">
                 <div class="col-12 col-md-8 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <form id="EventForm" action="{{ route('event.update',$event) }}" method="POST" enctype="multipart/form-data">
+                            <form id="EventForm" action="{{ route('dashboard.event.update',$event) }}" method="POST" enctype="multipart/form-data">
                                 @csrf @method('PATCH')
-
+            
                                 <div class="row mb-3">
                                     <label for="eventName" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Nombre') }}</label>
+
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="eventName" name="eventName" value="{{$event['name']}}" required autofocus>
                                     </div>
@@ -81,11 +41,13 @@
 
                                 <div class="row mb-2">
                                     <label for="eventCategories" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Categoria') }}</label>
+
                                     <div class="col-md-6">
                                         @foreach($categories as $category)
                                             <input type="radio" class="btn-check" id="category{{ $category->id }}" name="eventCategory" value="{{ $category->id }}" {{ ($event->category_id ?? old('eventCategory')) == $category->id ? 'checked' : '' }} autocomplete="off">
                                             <label for="category{{ $category->id }}" class="btn btn-sm mb-2">{{ $category->name }}</label>
                                         @endforeach
+
                                         <br>
                                         <span id="categoryError" class="d-none text-danger" role="alert">
                                             <strong><i class="bi bi-exclamation-circle"></i> Solo puedes seleccionar un máximo de 3 categorías.</strong>
@@ -95,11 +57,13 @@
 
                                 <div class="row mb-2">
                                     <label for="eventStatus" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Estado del evento') }}</label>
+
                                     <div class="col-md-6">
                                         @foreach($status as $statu)
                                             <input type="radio" class="btn-check" id="statu{{ $statu->id }}" name="eventStatus" value="{{ $statu->id }}" {{ ($event->status_id ?? old('eventStatus')) == $statu->id ? 'checked' : '' }} autocomplete="off">
                                             <label for="statu{{ $statu->id }}" class="btn btn-sm mb-2">{{ $statu->name }}</label>
                                         @endforeach
+
                                         <br>
                                         <span id="statusError" class="d-none text-danger" role="alert">
                                             <strong><i class="bi bi-exclamation-circle"></i> Solo puedes seleccionar un máximo de un solo estado.</strong>
@@ -111,17 +75,21 @@
                                     <label for="location" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Ubicación') }}</label>
                                     <div class="col-md-6">
                                         <div class="row">
+
                                             <div class="col-md-6">
                                                 <label for="eventCountry" class="form-label fs-6 mb-0">{{ __('País') }}</label>
-                                                <input type="text" class="form-control" id="eventCountry" name="eventCountry" value="{{$location['country']}}" required>
+                                                <input type="text" class="form-control" id="eventCountry" name="eventCountry" value="{{$location['country']}}"  required>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <label for="eventRegion" class="form-label fs-6 mb-0">{{ __('Región') }}</label>
-                                                <input type="text" class="form-control" id="eventRegion" name="eventRegion"  value="{{$location['region']}}"required>
+                                                <input type="text" class="form-control" id="eventRegion" name="eventRegion" value="{{$location['region']}}" required>
                                             </div>
+
                                         </div>
 
                                         <div class="row mt-2">
+
                                             <div class="col-md-6">
                                                 <label for="eventCity" class="form-label fs-6 mb-0">{{ __('Ciudad') }}</label>
                                                 <input type="text" class="form-control" id="eventCity" name="eventCity" value="{{$location['city']}}" required>
@@ -132,17 +100,13 @@
                                                 <input type="text" class="form-control" id="eventAddress" name="eventAddress" value="{{$location['address']}}" required>
                                             </div>
                                         </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-6">
-                                            </div>
-                                            <div class="col-md-6">
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="eventDescription" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Descripcion') }}</label>
+
                                     <div class="col-md-8">
                                         <textarea class="form-control" id="eventDescription" name="eventDescription" required>{{$event['description']}}</textarea>
                                     </div>
@@ -150,13 +114,15 @@
 
                                 <div class="row mb-3">
                                     <label for="eventImage" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Imagen') }}</label>
+
                                     <div class="col-md-6">
-                                        <input type="file" class="form-control" id="eventImage" name="eventImage" value="{{$event['img_url']}}">
+                                        <input type="file" class="form-control" id="eventImage" name="eventImage" value="{{$event['img_url']}}" >
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="eventCapacity" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Capacidad') }}</label>
+
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-people-fill"></i></span>
@@ -167,6 +133,7 @@
 
                                 <div class="row mb-3">
                                     <label for="eventPrice" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Precio') }}</label>
+
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
@@ -177,20 +144,24 @@
 
                                 <div class="row mb-3">
                                     <label for="eventDates" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Fecha') }}</label>
+
                                     <div class="col-md-6">
                                         <div class="input-group">
+
                                             <span class="input-group-text"><i class="bi bi-calendar2-event-fill"></i></span>
                                             <input type="date" class="form-control me-2" id="eventStartDate" name="eventStartDate" value="{{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}" required>
                                             <span class="me-2">→</span>
                                             <span class="input-group-text"><i class="bi bi-calendar2-event-fill"></i></span>
                                             <input type="date" class="form-control" id="eventEndDate" name="eventEndDate" value="{{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}" required>
+
+
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
                                 <div class="row mb-3 mt-4">
                                     <div class="col-md-6 offset-md-4">
-                                        <a href="{{ route('events.index') }}" class="btn btn-secondary me-2">
+                                        <a href="{{ route('dashboard.events.index') }}" class="btn btn-secondary me-2">
                                             <i class="bi bi-x-lg"></i>
                                             Cancelar
                                         </a>
@@ -205,6 +176,7 @@
                     </div>
                 </div>
 
+
                 <div class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-body">
@@ -215,9 +187,10 @@
                             </div>
                             <div class="row">
                                 <div class="col badge-container">
+
                                 </div>
                             </div>
-                            <img class="card-img img-fluid" src="{{ asset('storage/' . $event->img_url) }}" alt="Imagen del evento" id="eventImagePreview">
+                            <img class="card-img img-fluid" src="{{ asset('storage/' . '1.png') }}" alt="Imagen del evento">
                             <div class="d-flex justify-content-between mt-3">
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2">
@@ -251,10 +224,13 @@
             </div>
         </div>
     </div>
+            
+        </div>
+    </div>
+
+
 </section>
 
-<script src="{{ asset('js/eventDataPreview.js') }}"></script>
-<script src="{{ asset('js/eventFormValidation.js') }}"></script>
 
->>>>>>> 297103caa41cd135448d59f14ae6db72aa475403
+
 @endsection
