@@ -30,6 +30,19 @@
                 </div>
             </a>
         </div>
+        <div class="col">
+            <a href="{{ route('users.index') }}" class="text-decoration-none card-hover">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <i class="fas fa-users fa-4x text-primary mb-4"></i>
+                            <h4 class="card-title"><strong><i class="bi bi-people-fill me-2"></i>Usuarios</strong></h4>
+                            <p class="card-text text-muted">Administra los usuarios</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>    
         <div class="col-6 mb-5 mb-lg-0">
             <a href="{{ route('dashboard.tickets.index') }}" class="text-decoration-none card-hover">
                 <div class="card">
