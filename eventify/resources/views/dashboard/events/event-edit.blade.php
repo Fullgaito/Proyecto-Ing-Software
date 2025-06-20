@@ -144,21 +144,17 @@
 
                                 <div class="row mb-3">
                                     <label for="eventDates" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Fecha') }}</label>
-
                                     <div class="col-md-6">
                                         <div class="input-group">
-
                                             <span class="input-group-text"><i class="bi bi-calendar2-event-fill"></i></span>
                                             <input type="date" class="form-control me-2" id="eventStartDate" name="eventStartDate" value="{{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}" required>
                                             <span class="me-2">→</span>
                                             <span class="input-group-text"><i class="bi bi-calendar2-event-fill"></i></span>
                                             <input type="date" class="form-control" id="eventEndDate" name="eventEndDate" value="{{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}" required>
-
-
                                         </div>
                                     </div>
-
                                 </div>
+
                                 <div class="row mb-3 mt-4">
                                     <div class="col-md-6 offset-md-4">
                                         <a href="{{ route('dashboard.events.index') }}" class="btn btn-secondary me-2">
