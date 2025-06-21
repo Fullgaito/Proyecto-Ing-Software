@@ -75,6 +75,14 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Tickets</h6></li>
                                 <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.tickets.index') }}"><i class="bi bi-ticket-fill text-primary"></i> Mis tickets</a></li>
+
+                                 @if (Auth::user()->role_id===1)
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><h6 class="dropdown-header">Administración</h6></li>
+                                    <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('explore') }}"><i class="bi bi-calendar2-plus-fill text-primary"></i> Eventos</a></li>
+                                    <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('users.index') }}"><i class="bi bi-people-fill text-primary"></i> Usuarios</a></li>
+                                    <li><a class="dropdown-item d-flex gap-2 align-items-center"><i class="bi bi-ticket-perforated-fill text-primary"></i> Tickets</a></li>
+                                @endif
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Cuenta</h6></li>
                                 <li>

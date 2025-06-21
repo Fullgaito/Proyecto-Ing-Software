@@ -186,7 +186,7 @@
 
                                 </div>
                             </div>
-                            <img class="card-img img-fluid" src="{{ asset('storage/' . '1.png') }}" alt="Imagen del evento">
+                            <img class="card-img img-fluid" src="{{ asset('storage/' . $event->img_url) }}" alt="Imagen del evento" id="eventImagePreview">
                             <div class="d-flex justify-content-between mt-3">
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2">
