@@ -38,6 +38,7 @@ Route::prefix('dashboard')->middleware(['auth','role:admin|user'])->group(functi
 
      Route::prefix('events')->group(function () {
         Route::get('/', [EventController::class, 'showMyEvents'])->name('dashboard.events.index');
+        Route::get('/all', [EventController::class, 'Todos'])->name('dashboard.events');
         Route::get('create', [EventController::class, 'create'])->name('dashboard.event.create');
         Route::post('store', [EventController::class, 'store'])->name('dashboard.event.store');
         Route::get('edit/{event}', [EventController::class, 'edit'])->name('dashboard.event.edit');

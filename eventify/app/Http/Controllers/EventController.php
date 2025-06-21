@@ -21,6 +21,12 @@ class EventController extends Controller
         return view('home', compact('events'));
     }
 
+    public function Todos(){
+        
+        $events = Event::all();
+        // Retornar la vista con los eventos
+        return view('dashboard.events.events-all', compact('events'));
+    }
 
     public function showMyEvents()
     {
